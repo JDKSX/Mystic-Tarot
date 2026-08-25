@@ -1,5 +1,5 @@
 /* =========================================================
-   Mystic Tarot โ€” Design System (Dark Fantasy, Mobile First)
+   Mystic Tarot — Design System (Dark Fantasy, Mobile First)
    Palette: Dark Navy / Deep Purple / Black / Gold / Off White
    ========================================================= */
 :root {
@@ -52,7 +52,7 @@ body {
 button { font-family: inherit; cursor: pointer; color: inherit; background: none; border: none; }
 input, textarea { font-family: inherit; }
 
-/* ---------- เธ”เธฒเธงเธเธทเนเธเธซเธฅเธฑเธ ---------- */
+/* ---------- ดาวพื้นหลัง ---------- */
 .stars {
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
   background-image:

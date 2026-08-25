@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0e1f" />
+  <title>Mystic Tarot · ไพ่ทาโรต์</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ชั้นดาวพื้นหลัง -->
+  <div class="stars" id="stars" aria-hidden="true"></div>
+
+  <!-- ========== ประตูเข้า: กรอกชื่อ (ใช้ชื่อสมมติได้) ========== -->
+  <section id="gate" class="gate" hidden>
+    <div class="gate__inner">
+      <div class="gate__glyph">✦</div>
+      <h1 class="gate__title">Mystic Tarot</h1>
+      <p class="gate__sub">ประตูสู่การสะท้อนตนเองผ่านไพ่ทาโรต์</p>
+      <form id="gateForm" class="gate__form" autocomplete="off">
+        <label for="userName" class="gate__label">เราจะเรียกคุณว่าอะไรดี?</label>
+        <input id="userName" class="gate__input" type="text" inputmode="text"
+               placeholder="พิมพ์ชื่อของคุณ" maxlength="24" spellcheck="false" />
+        <button type="submit" class="btn btn--gold gate__btn">เข้าสู่ห้องไพ่ ✦</button>
+        <p id="gateError" class="gate__error" role="alert" hidden>กรุณาพิมพ์ชื่ออย่างน้อย 1 ตัวอักษร</p>
+      </form>
+      <p class="gate__hint">ใช้ชื่อสมมติได้ · เราไม่เก็บข้อมูลส่วนตัวของคุณ</p>
+    </div>
+  </section>
+
+  <!-- ========== แอปหลัก ========== -->
+  <div id="app" class="app" hidden>
+    <!-- แถบบน -->
+    <header class="topbar">
+      <button class="topbar__back" id="btnBack" aria-label="ย้อนกลับ" hidden>‹</button>
+      <div class="topbar__brand" data-nav="home">✦ Mystic Tarot</div>
+      <button class="topbar__menu" id="btnMenu" aria-label="เมนู">☰</button>
+    </header>
+
+    <!-- เนื้อหาเปลี่ยนตาม view -->
+    <main id="view" class="view"></main>
+
+    <!-- แถบล่าง (มือถือ) -->
+    <nav class="tabbar">
+      <button class="tabbar__item" data-nav="home"><span>🏠</span>หน้าแรก</button>
+      <button class="tabbar__item" data-nav="daily"><span>☀️</span>ไพ่วันนี้</button>
+      <button class="tabbar__item tabbar__item--main" data-nav="topic"><span>✦</span>เปิดไพ่</button>
+      <button class="tabbar__item" data-nav="history"><span>📜</span>ประวัติ</button>
+      <button class="tabbar__item" data-nav="library"><span>📚</span>คลังไพ่</button>
+    </nav>
+
+    <!-- เมนูลิ้นชัก -->
+    <div class="drawer" id="drawer" hidden>
+      <div class="drawer__scrim" data-close-drawer></div>
+      <aside class="drawer__panel">
+        <div class="drawer__head">เมนู</div>
+        <button class="drawer__link" data-nav="home">🏠 หน้าแรก</button>
+        <button class="drawer__link" data-nav="topic">✦ เริ่มเปิดไพ่</button>
+        <button class="drawer__link" data-nav="daily">☀️ ไพ่ประจำวัน</button>
+        <button class="drawer__link" data-nav="library">📚 คลังไพ่ 78 ใบ</button>
+        <button class="drawer__link" data-nav="history">📜 ประวัติการเปิดไพ่</button>
+        <button class="drawer__link" data-nav="settings">⚙️ ตั้งค่า</button>
+        <button class="drawer__link" data-nav="about">ℹ️ เกี่ยวกับ / คำเตือน</button>
+        <div class="drawer__foot">
+          <button class="drawer__logout" id="btnLogout">ออกจากระบบ</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script src="js/tarot-deck.js"></script>
+  <script src="js/tarot-engine.js"></script>
+  <script src="js/mock-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

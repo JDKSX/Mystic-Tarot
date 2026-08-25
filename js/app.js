@@ -25,7 +25,7 @@
 
   // ---------- CONFIG ----------
   const CONFIG = {
-    API_URL: null, // จะตั้งใน Phase 4 (Google Apps Script Web App URL)
+    API_URL: "https://script.google.com/macros/s/AKfycbxIE19_2ApKHKaA0GtR_bKG2ALfhb-1-knN9gG33EbOF4qBaj-iZvOIalVdOgYSC008-w/exec",
   };
 
   // ---------- state ----------

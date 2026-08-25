@@ -7,6 +7,28 @@
 
   const $ = (sel, el = document) => el.querySelector(sel);
   const $$ = (sel, el = document) => [...el.querySelectorAll(sel)];
+
+  const ICO = {
+    home:    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 10.5L12 3l9 7.5V21a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1z"/></svg>',
+    sun:     '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2m-8-10H2m20 0h-2m-2.93-7.07l-1.41 1.41m-9.32 9.32l-1.41 1.41m0-12.14l1.41 1.41m9.32 9.32l1.41 1.41"/></svg>',
+    scroll:  '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 3H5a2 2 0 00-2 2v14c0 1.1.9 2 2 2h3m0-18h11a2 2 0 012 2v10a2 2 0 01-2 2H8m0-14v14m0 4a2 2 0 01-2-2m2 2a2 2 0 002-2m-2 2V3"/></svg>',
+    books:   '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M4 4.5A2.5 2.5 0 016.5 2H20v20H6.5A2.5 2.5 0 014 19.5z"/></svg>',
+    heart:   '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21C12 21 3 13.5 3 8a4.5 4.5 0 019 0 4.5 4.5 0 019 0c0 5.5-9 13-9 13z"/></svg>',
+    work:    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>',
+    coin:    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M14.5 9a2.5 2.5 0 00-5 0c0 2 5 2 5 4.5a2.5 2.5 0 01-5 0M12 6v1.5m0 9V18"/></svg>',
+    leaf:    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22c-4-4-8-7.5-8-12C4 5.5 7.5 2 12 2s8 3.5 8 8c0 4.5-4 8-8 12z"/><path d="M12 6v10m-3-6l3 3 3-3"/></svg>',
+    crystal: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 3a14.5 14.5 0 000 18M12 3a14.5 14.5 0 010 18M3 12h18"/></svg>',
+    gear:    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09a1.65 1.65 0 00-1.08-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09a1.65 1.65 0 001.51-1.08 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001.08 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1.08z"/></svg>',
+    info:    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>',
+    chat:    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>',
+    up:      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v4m0 12v4"/></svg>',
+    rev:     '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/></svg>',
+    card1:   '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 8v4"/></svg>',
+    card3:   '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 2h8a2 2 0 012 2v16a2 2 0 01-2 2H8a2 2 0 01-2-2V4a2 2 0 012-2z"/><path d="M2 6h2v12H2zm18 0h2v12h-2z"/></svg>',
+    card5:   '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="1.5"/><path d="M1 5h3v14H1zm17 0h3v14h-3zM4 8h3m10 0h3M4 16h3m10 0h3"/></svg>',
+    menu:    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>',
+    star:    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.09 6.26H21l-5.55 4.02L17.54 18.54 12 14.48l-5.54 4.06 2.09-6.26L3 8.26h6.91z"/></svg>',
+  };
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const cardById = (id) => TAROT_DECK.find((c) => c.id === id);
@@ -154,6 +176,7 @@ ${cardsText}
     if (CONFIG.API_URL) {
       const res = await fetch(CONFIG.API_URL, {
         method: "POST",
+        headers: { "Content-Type": "text/plain" },
         body: JSON.stringify({ action: "reading", prompt }),
         redirect: "follow",
       });
@@ -239,19 +262,19 @@ ${cardsText}
       <div class="section-label">ทางลัด</div>
       <div class="tiles">
         <button class="tile" data-nav="daily">
-          <div class="tile__ico">☀️</div><div class="tile__name">ไพ่ประจำวัน</div>
+          <div class="tile__ico">${ICO.sun}</div><div class="tile__name">ไพ่ประจำวัน</div>
           <div class="tile__note">สุ่ม 1 ใบสำหรับวันนี้</div>
         </button>
         <button class="tile" data-nav="library">
-          <div class="tile__ico">📚</div><div class="tile__name">คลังไพ่</div>
+          <div class="tile__ico">${ICO.books}</div><div class="tile__name">คลังไพ่</div>
           <div class="tile__note">เรียนรู้ไพ่ 78 ใบ</div>
         </button>
         <button class="tile" data-nav="history">
-          <div class="tile__ico">📜</div><div class="tile__name">ประวัติ</div>
+          <div class="tile__ico">${ICO.scroll}</div><div class="tile__name">ประวัติ</div>
           <div class="tile__note">การเปิดไพ่ที่ผ่านมา</div>
         </button>
         <button class="tile" data-nav="about">
-          <div class="tile__ico">ℹ️</div><div class="tile__name">เกี่ยวกับ</div>
+          <div class="tile__ico">${ICO.info}</div><div class="tile__name">เกี่ยวกับ</div>
           <div class="tile__note">คำเตือนการใช้งาน</div>
         </button>
       </div>`,
@@ -262,7 +285,7 @@ ${cardsText}
       <div class="choice-grid">
         ${MOCK_TOPICS.map((t) => `
           <button class="choice ${state.draft.topic === t.id ? "is-selected" : ""}" data-topic="${t.id}">
-            <div class="choice__icon">${t.icon}</div>
+            <div class="choice__icon">${ICO[t.icon] || t.icon}</div>
             <div class="choice__body">
               <div class="choice__title">${esc(t.title)}</div>
               <div class="choice__desc">${esc(t.desc)}</div>
@@ -279,7 +302,7 @@ ${cardsText}
       <div class="choice-grid">
         ${MOCK_SPREADS.map((s) => `
           <button class="choice ${state.draft.spread === s.id ? "is-selected" : ""}" data-spread="${s.id}">
-            <div class="choice__icon">${s.icon}</div>
+            <div class="choice__icon">${ICO[s.icon] || s.icon}</div>
             <div class="choice__body">
               <div class="choice__title">${esc(s.title)} <span class="faint">· ${s.count} ใบ</span></div>
               <div class="choice__desc">${esc(s.desc)}</div>
@@ -310,7 +333,7 @@ ${cardsText}
         ${Array.from({ length: 7 }).map(() => `<div class="deck__card">✦</div>`).join("")}
       </div>
       <div class="view-actions">
-        <button class="btn btn--purple" id="btnShuffle">🔀 สับไพ่</button>
+        <button class="btn btn--purple" id="btnShuffle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg> สับไพ่</button>
         <div style="height:10px"></div>
         <button class="btn btn--gold" id="shuffleNext" hidden>เลือกไพ่ ›</button>
       </div>`,
@@ -336,7 +359,7 @@ ${cardsText}
       const spreadClass = "spread--" + (spread.count === 1 ? "1" : spread.count === 3 ? "3" : "5");
       return `
         <div class="center">
-          <div class="section-label" style="justify-self:center">${topic ? topic.icon + " " + esc(topic.title) : "คำทำนาย"}</div>
+          <div class="section-label" style="justify-self:center">${topic ? (ICO[topic.icon] || topic.icon) + " " + esc(topic.title) : "คำทำนาย"}</div>
           <h2 class="h-title">${esc(reading.question || "คำทำนายของคุณ")}</h2>
           <p class="faint">${esc(spread.title)} · ${new Date(reading.created_at).toLocaleDateString("th-TH")}</p>
         </div>
@@ -358,7 +381,7 @@ ${cardsText}
         </div>
 
         <div style="height:16px"></div>
-        <button class="btn btn--purple" data-nav="followup">💬 ถามต่อ</button>
+        <button class="btn btn--purple" data-nav="followup">${ICO.chat} ถามต่อ</button>
         <div style="height:10px"></div>
         <button class="btn btn--ghost" id="newReading">✦ เปิดไพ่ใหม่</button>
         <div style="height:14px"></div>
@@ -376,7 +399,7 @@ ${cardsText}
       const spreadClass = "spread--" + (cards.length === 1 ? "1" : cards.length === 3 ? "3" : "5");
       return `
         <div class="center">
-          <div class="section-label" style="justify-self:center">${topic ? topic.icon + " " + esc(topic.title) : ""}</div>
+          <div class="section-label" style="justify-self:center">${topic ? (ICO[topic.icon] || topic.icon) + " " + esc(topic.title) : ""}</div>
           <h2 class="h-title">${esc(reading.question)}</h2>
           <p class="faint">${esc(spread.title)} · ${esc(reading.date)}</p>
         </div>
@@ -450,11 +473,11 @@ ${cardsText}
           ${c.keywords.map((k) => `<span class="chip">${esc(k)}</span>`).join("")}
         </div>
         <div class="card-panel" style="margin-top:16px">
-          <h4 style="color:var(--gold-300);font-family:var(--font-display)">🔆 ตั้งตรง (Upright)</h4>
+          <h4 style="color:var(--gold-300);font-family:var(--font-display)">${ICO.up} ตั้งตรง (Upright)</h4>
           <p>${esc(c.upright)}</p>
         </div>
         <div class="card-panel" style="margin-top:12px">
-          <h4 style="color:var(--gold-300);font-family:var(--font-display)">🔄 กลับหัว (Reversed)</h4>
+          <h4 style="color:var(--gold-300);font-family:var(--font-display)">${ICO.rev} กลับหัว (Reversed)</h4>
           <p>${esc(c.reversed)}</p>
         </div>`;
     },
@@ -468,15 +491,15 @@ ${cardsText}
           const topic = topicById(h.topic);
           return `
             <div class="hist-item" data-hist="${esc(h.id)}">
-              <div class="hist-item__ico">${topic ? topic.icon : "🔮"}</div>
+              <div class="hist-item__ico">${topic ? (ICO[topic.icon] || topic.icon) : ICO.crystal}</div>
               <div class="hist-item__body">
                 <div class="hist-item__q">${esc(h.question)}</div>
                 <div class="hist-item__meta">${esc(spreadById(h.spread)?.title || "")} · ${esc(h.date)}</div>
               </div>
-              <button class="hist-item__del" data-del="${esc(h.id)}" aria-label="ลบ">🗑</button>
+              <button class="hist-item__del" data-del="${esc(h.id)}" aria-label="ลบ"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M8 6V4a1 1 0 011-1h6a1 1 0 011 1v2m2 0v14a2 2 0 01-2 2H8a2 2 0 01-2-2V6h12z"/></svg></button>
             </div>`;
         }).join("") :
-          `<div class="empty"><div class="empty__ico">📜</div><p>ยังไม่มีประวัติการเปิดไพ่</p></div>`}
+          `<div class="empty"><div class="empty__ico">${ICO.scroll}</div><p>ยังไม่มีประวัติการเปิดไพ่</p></div>`}
         ${list.length ? `<div style="height:12px"></div><button class="btn btn--ghost" id="clearHistory">ลบประวัติทั้งหมด</button>` : ""}`;
     },
 
@@ -501,7 +524,7 @@ ${cardsText}
       <h2 class="h-title">เกี่ยวกับ</h2>
       <p class="h-sub">Mystic Tarot · เวอร์ชัน 1.0</p>
       <div class="disclaimer">
-        <b style="color:var(--gold-300)">⚠️ คำเตือนสำคัญ</b><br><br>
+        <b style="color:var(--gold-300)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L1 21h22L12 2z"/><path d="M12 9v4m0 4h.01"/></svg> คำเตือนสำคัญ</b><br><br>
         ${esc(DISCLAIMER_TEXT)}<br><br>
         AI จะไม่ให้คำตัดสินเด็ดขาดเกี่ยวกับ โรคภัย การรักษา การเสียชีวิต การลงทุน การพนัน คดีความ หรือการทำร้ายตัวเอง
         หากคุณกำลังเผชิญเรื่องเหล่านี้ โปรดปรึกษาผู้เชี่ยวชาญที่เกี่ยวข้องโดยตรง
@@ -536,7 +559,7 @@ ${cardsText}
         <div>
           <div class="result-card__pos">${esc(c.position_label || ("ใบที่ " + (i + 1)))}</div>
           <div class="result-card__name">${esc(card.name_th)}</div>
-          <span class="result-card__orient">${reversed ? "🔄 กลับหัว" : "🔆 ตั้งตรง"}</span>
+          <span class="result-card__orient">${reversed ? ICO.rev + " กลับหัว" : ICO.up + " ตั้งตรง"}</span>
           <div class="result-card__kw">${card.keywords.map(esc).join(" · ")}</div>
         </div>
       </div>`;
@@ -584,7 +607,7 @@ ${cardsText}
         setTimeout(() => {
           deck.classList.remove("is-shuffling");
           $("#shuffleNext").hidden = false;
-          $("#btnShuffle").textContent = "🔀 สับอีกครั้ง";
+          $("#btnShuffle").innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg> สับอีกครั้ง';
         }, state.settings.animations ? 1400 : 200);
       });
       $("#shuffleNext")?.addEventListener("click", () => {

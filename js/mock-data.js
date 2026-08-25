@@ -8,24 +8,24 @@
 const MOCK_CARDS = TAROT_DECK;
 
 const MOCK_TOPICS = [
-  { id: "love",    icon: "💗", title: "ความรัก",       desc: "ความสัมพันธ์ หัวใจ และความรู้สึก" },
-  { id: "work",    icon: "💼", title: "การงาน",        desc: "หน้าที่ อาชีพ และเป้าหมาย" },
-  { id: "money",   icon: "🪙", title: "การเงิน",        desc: "ความมั่นคงและโอกาสด้านวัตถุ" },
-  { id: "self",    icon: "🌱", title: "การเติบโตของตน", desc: "จิตใจ พลังงาน และเส้นทางชีวิต" },
-  { id: "general", icon: "🔮", title: "คำถามทั่วไป",    desc: "สิ่งที่อยู่ในใจ ณ ตอนนี้" },
+  { id: "love",    icon: "heart",   title: "ความรัก",       desc: "ความสัมพันธ์ หัวใจ และความรู้สึก" },
+  { id: "work",    icon: "work",    title: "การงาน",        desc: "หน้าที่ อาชีพ และเป้าหมาย" },
+  { id: "money",   icon: "coin",    title: "การเงิน",        desc: "ความมั่นคงและโอกาสด้านวัตถุ" },
+  { id: "self",    icon: "leaf",    title: "การเติบโตของตน", desc: "จิตใจ พลังงาน และเส้นทางชีวิต" },
+  { id: "general", icon: "crystal", title: "คำถามทั่วไป",    desc: "สิ่งที่อยู่ในใจ ณ ตอนนี้" },
 ];
 
 const MOCK_SPREADS = [
-  { id: "one",   icon: "🃏", title: "ไพ่ใบเดียว", count: 1, desc: "คำแนะนำสั้น กระชับ ตรงประเด็น", positions: ["สาระสำคัญ"] },
-  { id: "three", icon: "🔱", title: "สามใบ",       count: 3, desc: "อดีต · ปัจจุบัน · อนาคต",       positions: ["อดีต", "ปัจจุบัน", "อนาคต"] },
-  { id: "five",  icon: "✋", title: "ห้าใบ",        count: 5, desc: "เจาะลึกสถานการณ์ที่ซับซ้อน",   positions: ["สถานการณ์", "อุปสรรค", "คำแนะนำ", "สิ่งภายนอก", "ผลลัพธ์"] },
+  { id: "one",   icon: "card1", title: "ไพ่ใบเดียว", count: 1, desc: "คำแนะนำสั้น กระชับ ตรงประเด็น", positions: ["สาระสำคัญ"] },
+  { id: "three", icon: "card3", title: "สามใบ",       count: 3, desc: "อดีต · ปัจจุบัน · อนาคต",       positions: ["อดีต", "ปัจจุบัน", "อนาคต"] },
+  { id: "five",  icon: "card5", title: "ห้าใบ",        count: 5, desc: "เจาะลึกสถานการณ์ที่ซับซ้อน",   positions: ["สถานการณ์", "อุปสรรค", "คำแนะนำ", "สิ่งภายนอก", "ผลลัพธ์"] },
 ];
 
 // ประวัติจำลอง (Phase 6 จะแทนด้วยข้อมูลจริง)
 const MOCK_HISTORY = [
-  { id: "r1", topic: "love", icon: "💗", question: "ความสัมพันธ์ของฉันจะเป็นอย่างไรต่อไป", spread: "three", date: "2026-08-22" },
-  { id: "r2", topic: "work", icon: "💼", question: "ควรเปลี่ยนงานตอนนี้ไหม",              spread: "one",   date: "2026-08-20" },
-  { id: "r3", topic: "self", icon: "🌱", question: "สิ่งที่ฉันควรโฟกัสในเดือนนี้",         spread: "five",  date: "2026-08-15" },
+  { id: "r1", topic: "love", icon: "heart", question: "ความสัมพันธ์ของฉันจะเป็นอย่างไรต่อไป", spread: "three", date: "2026-08-22" },
+  { id: "r2", topic: "work", icon: "work",  question: "ควรเปลี่ยนงานตอนนี้ไหม",              spread: "one",   date: "2026-08-20" },
+  { id: "r3", topic: "self", icon: "leaf",  question: "สิ่งที่ฉันควรโฟกัสในเดือนนี้",         spread: "five",  date: "2026-08-15" },
 ];
 
 // ผล AI จำลอง (Phase 5 จะแทนด้วย Gemini จริง)

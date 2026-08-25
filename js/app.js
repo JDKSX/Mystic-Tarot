@@ -10,12 +10,22 @@
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const cardById = (id) => TAROT_DECK.find((c) => c.id === id);
+  function cardImgPath(id) {
+    const m = id.match(/^(maj)(\d+)$|^(wa)(\d+)$|^(cu)(\d+)$|^(sw)(\d+)$|^(pe)(\d+)$/);
+    if (!m) return "";
+    if (m[1]) return "assets/cards/m" + m[2] + ".jpg";
+    if (m[3]) return "assets/cards/w" + m[4] + ".jpg";
+    if (m[5]) return "assets/cards/c" + m[6] + ".jpg";
+    if (m[7]) return "assets/cards/s" + m[8] + ".jpg";
+    if (m[9]) return "assets/cards/p" + m[10] + ".jpg";
+    return "";
+  }
   const topicById = (id) => MOCK_TOPICS.find((t) => t.id === id);
   const spreadById = (id) => MOCK_SPREADS.find((s) => s.id === id);
 
   // ---------- CONFIG ----------
   const CONFIG = {
-    API_URL: "https://script.google.com/macros/s/AKfycbxIE19_2ApKHKaA0GtR_bKG2ALfhb-1-knN9gG33EbOF4qBaj-iZvOIalVdOgYSC008-w/exec",
+    API_URL: null, // จะตั้งใน Phase 4 (Google Apps Script Web App URL)
   };
 
   // ---------- state ----------
@@ -507,7 +517,7 @@ ${cardsText}
       <div class="card ${revealed ? "is-flipped" : ""} ${reversed ? "is-reversed" : ""}" data-card>
         <div class="card__face card__back"><span class="card__back-glyph">✦</span></div>
         <div class="card__face card__front">
-          <div class="card__art">${card.art}</div>
+          <div class="card__art"><img src="${cardImgPath(card.id)}" alt="${esc(card.name_en)}" loading="lazy"></div>
           <div>
             <div class="card__name">${esc(card.name_th)}</div>
             <div class="card__orient">${reversed ? "กลับหัว" : "ตั้งตรง"}</div>
@@ -534,7 +544,7 @@ ${cardsText}
   function libCardHTML(c) {
     return `
       <button class="lib-card" data-detail="${c.id}" data-arcana="${c.arcana}" data-suit="${c.suit}">
-        <div class="lib-card__art">${c.art}</div>
+        <div class="lib-card__art"><img src="${cardImgPath(c.id)}" alt="${esc(c.name_en)}" loading="lazy"></div>
         <div class="lib-card__name">${esc(c.name_th)}</div>
       </button>`;
   }

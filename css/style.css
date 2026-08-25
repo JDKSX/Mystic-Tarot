@@ -26,8 +26,8 @@
   --glow-gold: 0 0 22px rgba(217,180,91,0.35);
   --glow-purple: 0 0 26px rgba(138,108,240,0.35);
 
-  --font-display: 'Cinzel', 'Sarabun', serif;
-  --font-body: 'Sarabun', system-ui, sans-serif;
+  --font-display: 'Cinzel', 'Charm', serif;
+  --font-body: 'Kanit', system-ui, sans-serif;
 
   --tabbar-h: 68px;
   --topbar-h: 56px;
@@ -284,7 +284,8 @@ input, textarea { font-family: inherit; }
 }
 .card.is-flipped { transform: rotateY(180deg); }
 .card.is-reversed .card__front { transform: rotateY(180deg) rotate(180deg); }
-.card__art { font-size: 2rem; margin-top: 6px; }
+.card__art { margin-top: 4px; }
+.card__art img { width: 100%; max-width: 80px; height: auto; border-radius: 4px; }
 .card__name { font-family: var(--font-display); font-size: .72rem; line-height: 1.2; color: var(--gold-300); }
 .card__orient { font-size: .6rem; color: var(--cream-faint); }
 
@@ -339,7 +340,8 @@ input, textarea { font-family: inherit; }
   align-items: center; justify-content: center; gap: 4px; transition: transform .15s, border .2s;
 }
 .lib-card:active { transform: scale(.96); border-color: var(--gold-400); }
-.lib-card__art { font-size: 1.5rem; }
+.lib-card__art { }
+.lib-card__art img { width: 100%; max-width: 60px; height: auto; border-radius: 3px; }
 .lib-card__name { font-size: .66rem; color: var(--gold-300); line-height: 1.15; font-family: var(--font-display); }
 .lib-filter { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; margin-top: 4px; }
 .lib-filter::-webkit-scrollbar { display: none; }

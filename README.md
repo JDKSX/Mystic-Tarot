@@ -43,5 +43,3 @@ python3 -m http.server 4599
 
 ## ค่าใช้จ่าย
 **0 บาท/เดือน** — GitHub Pages ฟรี, Google Apps Script ฟรี, Gemini API Free Tier ฟรี
-
-

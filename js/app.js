@@ -154,11 +154,12 @@ ${cardsText}
     if (CONFIG.API_URL) {
       const res = await fetch(CONFIG.API_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "reading", prompt }),
+        redirect: "follow",
       });
-      if (!res.ok) throw new Error("API error " + res.status);
-      const data = await res.json();
+      const text = await res.text();
+      const data = JSON.parse(text);
+      if (!data.ok) throw new Error(data.error || "API error");
       return data.result || data.text || data;
     }
     return null;

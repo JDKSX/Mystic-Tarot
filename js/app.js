@@ -128,7 +128,7 @@
   }
 
   // ---------- AI integration ----------
-  function buildAIPrompt(reading) {
+  function buildReadingContext(reading) {
     const spread = spreadById(reading.spread_id);
     const topic = topicById(reading.topic);
     const cardsText = reading.cards.map(c => {
@@ -149,7 +149,22 @@
 รูปแบบ: ${spread ? spread.title : "ไพ่ใบเดียว"} (${reading.cards.length} ใบ)
 
 ไพ่ที่เปิดได้:
-${cardsText}
+${cardsText}`;
+  }
+
+  function buildFollowupPrompt(reading, question) {
+    return `${buildReadingContext(reading)}
+
+ผู้ใช้อ่านคำทำนายข้างต้นแล้ว และถามเพิ่มว่า:
+"${question}"
+
+ตอบคำถามนี้โดยตรง 3-5 ประโยค อ้างอิงไพ่ที่เปิดได้ข้างต้น
+เขียนกระชับ ตรงประเด็น ห้ามทวนคำทำนายเดิมซ้ำ
+ห้ามใส่หัวข้อ ## ใด ๆ ตอบเป็นย่อหน้าเดียว`;
+  }
+
+  function buildAIPrompt(reading) {
+    return `${buildReadingContext(reading)}
 
 เขียนกระชับ ตรงประเด็น ไม่เยิ่นเย้อ ไม่ท้าวความซ้ำ
 ตอบให้ครบทั้ง 6 หัวข้อด้านล่าง ใช้ ## นำหน้าหัวข้อ และสะกดชื่อหัวข้อให้ตรงทุกตัวอักษร
@@ -676,12 +691,10 @@ ${cardsText}
 
         const reading = state.currentReading;
         if (CONFIG.API_URL && reading) {
-          const followupPrompt = buildAIPrompt(reading) + "\n\n--- คำถามเพิ่มเติมจากผู้ใช้ ---\n" + q;
-          callAI(followupPrompt).then(text => {
-            const sections = parseAIResult(text);
-            box.innerHTML = `<div class="card-panel ai-block" style="margin-top:14px">${sections ? renderAIBlock(sections) : `<p>${esc(text)}</p>`}<p class="faint">${esc(DISCLAIMER_TEXT)}</p></div>`;
-          }).catch(() => {
-            box.innerHTML = `<div class="card-panel ai-block" style="margin-top:14px"><p>ไม่สามารถเชื่อมต่อ AI ได้ในขณะนี้</p></div>`;
+          callAI(buildFollowupPrompt(reading, q)).then(text => {
+            box.innerHTML = `<div class="card-panel ai-block" style="margin-top:14px"><p>${esc(text)}</p><p class="faint">${esc(DISCLAIMER_TEXT)}</p></div>`;
+          }).catch((err) => {
+            box.innerHTML = `<div class="card-panel ai-block" style="margin-top:14px"><p>AI ไม่ว่างในขณะนี้</p><p class="faint">${esc(err.message || "")}</p></div>`;
           });
         } else {
           setTimeout(() => {

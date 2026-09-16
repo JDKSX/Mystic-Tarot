@@ -333,8 +333,23 @@ svg { vertical-align: middle; }
 .result-card__kw { color: var(--cream-dim); font-size: .84rem; margin-top: 6px; }
 
 .ai-block { margin-top: 8px; }
-.ai-block h4 { font-family: var(--font-display); color: var(--gold-300); font-size: 1rem; margin: 16px 0 6px; letter-spacing: .5px; }
-.ai-block p { color: var(--cream); font-size: .95rem; margin-bottom: 8px; }
+.ai-block h4 {
+  font-family: var(--font-display); color: var(--gold-300); font-size: 1rem;
+  margin: 26px 0 10px; letter-spacing: .5px;
+  padding-bottom: 6px; border-bottom: 1px solid var(--line-soft);
+}
+.ai-block > h4:first-child { margin-top: 0; }
+.ai-block p { color: var(--cream); font-size: .95rem; line-height: 1.85; margin-bottom: 12px; }
+.ai-block strong { color: var(--gold-300); font-weight: 600; }
+
+.ai-list { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 12px; }
+.ai-list li {
+  color: var(--cream); font-size: .95rem; line-height: 1.85;
+  padding: 10px 12px 10px 14px; border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.035); border-left: 2px solid var(--gold-500);
+}
+/* A bolded lead-in ("**ตำแหน่ง – ไพ่:**") reads as the item's heading. */
+.ai-list li strong:first-child { display: block; margin-bottom: 2px; }
 
 /* Library grid */
 .lib-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 6px; }
@@ -436,7 +451,7 @@ svg { vertical-align: middle; }
 .result-card:nth-child(5) { animation-delay: .6s; }
 
 .ai-block h4 { animation: fade .4s ease both; }
-.ai-block p { animation: rise .5s ease both; }
+.ai-block p, .ai-list li { animation: rise .5s ease both; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .01ms !important; }

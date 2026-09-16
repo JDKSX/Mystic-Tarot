@@ -180,13 +180,18 @@ ${cardsText}
     const ctrl = new AbortController();
     const timer = setTimeout(() => ctrl.abort(), 180000);
     try {
-      const res = await fetch(CONFIG.API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "text/plain" },
-        body: JSON.stringify({ action: "reading", prompt }),
-        redirect: "follow",
-        signal: ctrl.signal,
-      });
+      let res;
+      try {
+        res = await fetch(CONFIG.API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain" },
+          body: JSON.stringify({ action: "reading", prompt }),
+          redirect: "follow",
+          signal: ctrl.signal,
+        });
+      } catch (e) {
+        throw new Error(e.name === "AbortError" ? "AI ใช้เวลานานเกินไป" : "เชื่อมต่อไม่ได้");
+      }
       const text = await res.text();
       // Google cuts off slow Apps Script requests and returns an HTML page.
       if (text.trim().startsWith("<")) throw new Error("AI ใช้เวลานานเกินไป");

@@ -241,6 +241,33 @@ ${cardsText}`;
     return sections;
   }
 
+  // The model answers in light markdown — "**bold labels**", "* " bullets, blank
+  // lines between paragraphs. Escaping first means the only tags in the result
+  // are the ones built here, so model output can never inject markup.
+  function renderRichText(raw) {
+    const inline = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+    const out = [];
+    let list = [];
+    let para = [];
+    const flushList = () => {
+      if (list.length) { out.push(`<ul class="ai-list">${list.join("")}</ul>`); list = []; }
+    };
+    const flushPara = () => {
+      if (para.length) { out.push(`<p>${para.join("<br>")}</p>`); para = []; }
+    };
+
+    String(raw).split("\n").forEach((line) => {
+      const text = line.trim();
+      if (!text) { flushList(); flushPara(); return; }
+      const bullet = text.match(/^[*\-–•]\s+(.+)$/);
+      if (bullet) { flushPara(); list.push(`<li>${inline(bullet[1])}</li>`); }
+      else { flushList(); para.push(inline(text)); }
+    });
+    flushList();
+    flushPara();
+    return out.join("");
+  }
+
   function renderAIBlock(sections) {
     const titles = {
       overview: "ภาพรวม", perCard: "ไพ่แต่ละใบ",
@@ -248,7 +275,7 @@ ${cardsText}`;
       advice: "คำแนะนำ", followup: "คำถามสำหรับใคร่ครวญ",
     };
     return Object.entries(sections).map(([k, v]) =>
-      `<h4>${esc(titles[k] || k)}</h4><p>${esc(v)}</p>`
+      `<h4>${esc(titles[k] || k)}</h4>${renderRichText(v)}`
     ).join("");
   }
 
@@ -692,7 +719,7 @@ ${cardsText}`;
         const reading = state.currentReading;
         if (CONFIG.API_URL && reading) {
           callAI(buildFollowupPrompt(reading, q)).then(text => {
-            box.innerHTML = `<div class="card-panel ai-block" style="margin-top:14px"><p>${esc(text)}</p><p class="faint">${esc(DISCLAIMER_TEXT)}</p></div>`;
+            box.innerHTML = `<div class="card-panel ai-block" style="margin-top:14px">${renderRichText(text)}<p class="faint">${esc(DISCLAIMER_TEXT)}</p></div>`;
           }).catch((err) => {
             box.innerHTML = `<div class="card-panel ai-block" style="margin-top:14px"><p>AI ไม่ว่างในขณะนี้</p><p class="faint">${esc(err.message || "")}</p></div>`;
           });
@@ -779,7 +806,7 @@ ${cardsText}`;
         const sections = parseAIResult(text);
         reading.ai_result = sections;
         addToHistory(reading);
-        block.innerHTML = sections ? renderAIBlock(sections) : `<p>${esc(text)}</p>`;
+        block.innerHTML = sections ? renderAIBlock(sections) : renderRichText(text);
       } catch (err) {
         block.innerHTML = `
           <p style="color:var(--cream-dim)">AI ไม่ว่างในขณะนี้ · แสดงข้อมูลไพ่อย่างเดียว</p>

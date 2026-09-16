@@ -109,7 +109,7 @@
   }
   function saveHistory(list) { localStorage.setItem(HISTORY_KEY, JSON.stringify(list)); }
   function addToHistory(reading) {
-    const list = loadHistory();
+    const list = loadHistory().filter(h => h.id !== reading.reading_id);
     list.unshift({
       id: reading.reading_id,
       topic: reading.topic,
@@ -173,19 +173,27 @@ ${cardsText}
   }
 
   async function callAI(prompt) {
-    if (CONFIG.API_URL) {
+    if (!CONFIG.API_URL) return null;
+
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 180000);
+    try {
       const res = await fetch(CONFIG.API_URL, {
         method: "POST",
         headers: { "Content-Type": "text/plain" },
         body: JSON.stringify({ action: "reading", prompt }),
         redirect: "follow",
+        signal: ctrl.signal,
       });
       const text = await res.text();
+      // Google cuts off slow Apps Script requests and returns an HTML page.
+      if (text.trim().startsWith("<")) throw new Error("AI ใช้เวลานานเกินไป");
       const data = JSON.parse(text);
       if (!data.ok) throw new Error(data.error || "API error");
       return data.result || data.text || data;
+    } finally {
+      clearTimeout(timer);
     }
-    return null;
   }
 
   function parseAIResult(text) {
@@ -377,7 +385,7 @@ ${cardsText}
 
         <div class="card-panel ai-block" id="aiBlock">
           <div class="spinner"></div>
-          <p class="loading-text">กำลังตีความไพ่...</p>
+          <p class="loading-text">กำลังตีความไพ่... (อาจใช้เวลา 1-2 นาที)</p>
         </div>
 
         <div style="height:16px"></div>
@@ -752,8 +760,15 @@ ${cardsText}
         reading.ai_result = sections;
         addToHistory(reading);
         block.innerHTML = sections ? renderAIBlock(sections) : `<p>${esc(text)}</p>`;
-      } catch {
-        block.innerHTML = `<p style="color:var(--cream-dim)">ไม่สามารถเชื่อมต่อ AI ได้ · แสดงข้อมูลไพ่อย่างเดียว</p>`;
+      } catch (err) {
+        block.innerHTML = `
+          <p style="color:var(--cream-dim)">AI ไม่ว่างในขณะนี้ · แสดงข้อมูลไพ่อย่างเดียว</p>
+          <p class="faint">${esc(err.message || "")}</p>
+          <button class="btn btn--ghost" id="aiRetry" style="margin-top:12px">ลองใหม่อีกครั้ง</button>`;
+        $("#aiRetry")?.addEventListener("click", () => {
+          block.innerHTML = `<div class="spinner"></div><p class="loading-text">กำลังตีความไพ่... (อาจใช้เวลา 1-2 นาที)</p>`;
+          loadAIReading();
+        });
         addToHistory(reading);
       }
     } else {

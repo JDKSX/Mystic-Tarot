@@ -390,9 +390,8 @@ ${cardsText}`;
         ${Array.from({ length: 7 }).map(() => `<div class="deck__card">✦</div>`).join("")}
       </div>
       <div class="view-actions">
-        <button class="btn btn--purple" id="btnShuffle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg> สับไพ่</button>
-        <div style="height:10px"></div>
         <button class="btn btn--gold" id="shuffleNext" hidden>เลือกไพ่ ›</button>
+        <button class="btn btn--purple" id="btnShuffle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg> สับไพ่</button>
       </div>`,
 
     draw: () => {

@@ -259,6 +259,10 @@ svg { vertical-align: middle; }
   padding: 12px 18px calc(12px + env(safe-area-inset-bottom));
   background: linear-gradient(180deg, transparent, var(--navy-900) 40%);
   max-width: var(--maxw); margin: 0 auto;
+  /* This bar grows upward from the bottom edge, so a button that appears later
+     must be added ABOVE the existing one — otherwise it lands under the thumb
+     that just tapped and gets hit by accident. */
+  display: grid; gap: 10px;
 }
 .view--with-action { padding-bottom: calc(var(--tabbar-h) + 92px); }
 
